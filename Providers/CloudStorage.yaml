@@ -1,0 +1,7 @@
+payload:
+  #国外网盘
+  - DOMAIN-SUFFIX,anonfiles.com
+  - DOMAIN-SUFFIX,pixeldrain.com
+  - DOMAIN-SUFFIX,gofile.io
+  - DOMAIN-SUFFIX,uploadhaven.com
+  - DOMAIN-SUFFIX,mixdrop.co
