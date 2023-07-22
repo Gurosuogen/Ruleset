@@ -8,7 +8,7 @@ DOMAIN-SUFFIX,789.123456.al
 #梓零公益服
 DOMAIN-SUFFIX,cf.zi0.icu
 DOMAIN-SUFFIX,zby.zi0.icu
-IP-CIDR,62.210.125.75/32
+#IP-CIDR,62.210.125.75/32
 #pilipili公益服
 DOMAIN-SUFFIX,pilipili.emby77.org
 DOMAIN-SUFFIX,pilipili-cf.emby77.org
