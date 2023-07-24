@@ -4,10 +4,12 @@ payload:
   - DOMAIN-SUFFIX,misakaf.org
   #付费 hxd
   - DOMAIN-SUFFIX,bili.rip
+  - IP-CIDR,92.222.208.70/32
   #TreeDiagram 树状图
   - DOMAIN-SUFFIX,789.123456.al
   #梓零公益服
   - DOMAIN-SUFFIX,zi0.icu
+  - IP-CIDR,62.210.125.75/32
   #pilipili公益服
   - DOMAIN-SUFFIX,emby77.org
   #野兽餐厅
