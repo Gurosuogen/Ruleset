@@ -1,26 +1,41 @@
 #EMBY
 #付费 MisakaF
 DOMAIN-SUFFIX,misakaf.org
-IP-CIDR,219.78.234.119/32 #香港pccw
+  #香港pccw
+IP-CIDR,219.78.234.119/32
+
 #付费 hxd
 DOMAIN-SUFFIX,bili.rip
-IP-CIDR,92.222.208.70/32 #法国ovh
-IP-CIDR,23.225.191.28/32 #加利福尼亚cera 4837
+  #法国ovh
+IP-CIDR,92.222.208.70/32
+  #加利福尼亚cera 4837
+IP-CIDR,23.225.191.28/32
+
 #TreeDiagram 树状图
 DOMAIN-SUFFIX,789.123456.al
+
 #梓零公益服
 DOMAIN-SUFFIX,zi0.icu
-IP-CIDR,62.210.125.75/32 #法国scaleway
+  #法国scaleway
+IP-CIDR,62.210.125.75/32
+
 #pilipili公益服
 DOMAIN-SUFFIX,emby77.org
-IP-CIDR,5.78.75.10/32 #美国俄勒冈hetzner
+  #美国俄勒冈hetzner
+IP-CIDR,5.78.75.10/32
+
 #野兽餐厅
 DOMAIN-SUFFIX,emby.mius.uk
+
 #hxd_anime
 DOMAIN-SUFFIX,fuck.nvidia.rip
-IP-CIDR,51.178.150.202/32 #法国ovh
+  #法国ovh
+IP-CIDR,51.178.150.202/32
+
 #Dolphin
 DOMAIN-SUFFIX,emby.ws
-IP-CIDR,142.132.219.148/32 #德国hetzner
+  #德国hetzner
+IP-CIDR,142.132.219.148/32
+
 #emby
 DOMAIN-KEYWORD,emby
