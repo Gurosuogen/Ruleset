@@ -4,6 +4,7 @@ payload:
   - DOMAIN-SUFFIX,rumt-sg.com
   - DOMAIN-SUFFIX,intlgame.com
   - DOMAIN-SUFFIX,iegcom.com
+  - DOMAIN-SUFFIX,midasbuy.com
   # - PROCESS-NAME,nikke
   # - PROCESS-NAME,nikke_launcher
   # - PROCESS-NAME,nikke.exe
