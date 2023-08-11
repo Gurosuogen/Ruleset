@@ -1,6 +1,8 @@
 payload:
   #Nikke
   - DOMAIN-SUFFIX,nikke-kr.com
+  - DOMAIN-SUFFIX,nikke-en.com
+  - DOMAIN-SUFFIX,nikke-jp.com
   - DOMAIN-SUFFIX,rumt-sg.com
   - DOMAIN-SUFFIX,intlgame.com
   - DOMAIN-SUFFIX,iegcom.com
