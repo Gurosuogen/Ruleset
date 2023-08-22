@@ -37,5 +37,8 @@ DOMAIN-SUFFIX,emby.ws
   #德国hetzner
 IP-CIDR,142.132.219.148/32
 
+#NME
+DOMAIN-SUFFIX,ohhhh.org
+
 #emby
 DOMAIN-KEYWORD,emby
