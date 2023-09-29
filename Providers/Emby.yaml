@@ -32,3 +32,6 @@ payload:
   - IP-CIDR,142.132.219.148/32
   #NME
   - DOMAIN-SUFFIX,ohhhh.org
+  #Atomlantis x Misakaf x jms
+  - DOMAIN-SUFFIX,emby-mix.atomlantis.cloud
+  - DOMAIN-SUFFIX,emby-misakaf.atomlantis.cloud
