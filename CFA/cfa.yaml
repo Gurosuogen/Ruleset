@@ -1,0 +1,249 @@
+pp:
+  &pp {
+    type: http,
+    interval: 86400,
+    health-check: { enable: true, url: "http://1.0.0.1/generate_204", interval: 3600 },
+  }
+rpc: &rpc { type: http, behavior: classical, interval: 86400 }
+
+# > Filter
+filter_common: &filter_common "^(?=.*(?:香港|HK|Hong Kong|🇭🇰|台湾|TW|Taiwan|🇨🇳|日本|JP|Japan|🇯🇵|新加坡|狮城|SG|Singapore|🇸🇬|美国|US|USA|United States|🇺🇸))(?!.*(?:Game)).*$"
+filter_cold: &filter_cold "^(?!.*(?:HK|Hong Kong|TW|Taiwan|JP|Japan|🇯🇵|SG|Singapore|US|USA|United States|香港|台湾|日本|新加坡|狮城|美国|群组|套餐到期|剩余流量|应急续费|重置|Emby)).*$"
+filter_hk: &filter_hk "^(?=.*(?:香港|HK|Hong Kong))(?!.*(?:Game)).*$"
+filter_tw: &filter_tw "^(?=.*(?:台湾|TW|Taiwan))(?!.*(?:Game)).*$"
+filter_jp: &filter_jp "^(?=.*(?:日本|JP|Japan|🇯🇵))(?!.*(?:Game)).*$"
+filter_sg: &filter_sg "^(?=.*(?:新加坡|狮城|SG|Singapore))(?!.*(?:Game)).*$"
+filter_us: &filter_us "^(?=.*(?:美国|US|USA|United States))(?!.*(?:Game|Emby)).*$"
+# > Proxies
+proxies_airport: &proxies_airport [🔱 Atomlantis, Ⓜ️ Maying, 🧬 SYN, 🧊 ACA, 🥶 冷门地区]
+proxies_mode: &proxies_mode [DIRECT, ☁️ PROXY, 🥶 冷门地区]
+proxies_area: &proxies_area [🇭🇰 Hong Kong, 🇨🇳 Taiwan, 🇯🇵 Japan, 🇸🇬 Singapore, 🇺🇸 United States]
+
+# > General
+mode: Rule
+log-level: info
+external-controller: 0.0.0.0:9090
+
+proxy-providers:
+  p_mix:
+    <<: *pp
+    path: ./proxys/p_mix.yaml
+    url: "aaaaaa.aaa"
+
+proxy-groups:
+  - { name: ☁️ PROXY, type: select, proxies: *proxies_airport }
+  - { name: 🎥 Netflix, type: select, use: [p_mix], proxies: [🥶 冷门地区], filter: *filter_sg }
+  - { name: 🎞️ Emby, type: select, use: [p_mix], proxies: [DIRECT], filter: '^(?=.*\bSYN\b)(?=.*\b0\.01\b).+$' }
+  - { name: 🪣 国外网盘, type: select, proxies: *proxies_airport }
+  - { name: 🤖 AI, type: select, use: [p_mix], filter: *filter_us }
+  - { name: 🕹️ Steam, type: select, proxies: *proxies_mode }
+  - { name: 🍎 Apple, type: select, proxies: *proxies_mode }
+  - { name: 🧩 Microsoft, type: select, proxies: *proxies_mode }
+  - { name: 🎵 Spotify, type: select, proxies: *proxies_mode }
+  - { name: 🌌 Google, type: select, proxies: *proxies_mode }
+  - { name: 📲 Telegram, type: select, proxies: *proxies_airport }
+  - { name: ♥️ EHGallery, type: select, proxies: *proxies_airport }
+  - { name: 🎶 Tiktok, type: select, proxies: *proxies_area }
+  - { name: 🪙 Crypto, type: select, proxies: *proxies_area }
+  - { name: ✖️ Twitter, type: select, proxies: *proxies_area }
+
+  - { name: 🔱 Atomlantis, type: select, use: [p_mix], filter: "Atomlantis" }
+  - { name: Ⓜ️ Maying, type: select, use: [p_mix], filter: "Maying" }
+  - { name: 🧬 SYN, type: select, use: [p_mix], filter: "SYN" }
+  - { name: 🧊 ACA, type: select, use: [p_mix], filter: "ACA" }
+
+  - { name: 📺 Bilibili, type: select, proxies: [DIRECT, 🧿 FINAL, 🥶 冷门地区] }
+  - { name: 🇭🇰 Hong Kong, type: select, use: [p_mix], filter: *filter_hk }
+  - { name: 🇨🇳 Taiwan, type: select, use: [p_mix], filter: *filter_tw }
+  - { name: 🇯🇵 Japan, type: select, use: [p_mix], filter: *filter_jp }
+  - { name: 🇸🇬 Singapore, type: select, use: [p_mix], filter: *filter_sg }
+  - { name: 🇺🇸 United States, type: select, use: [p_mix], filter: *filter_us }
+  - { name: 🥶 冷门地区, type: select, use: [p_mix], filter: *filter_cold }
+  - { name: 🧿 FINAL, type: select, proxies: *proxies_mode }
+  - { name: 🎫 SYN Stream, type: select, use: [p_mix], filter: '^(?=.*\bSYN\b)(?=.*\bSP\b).*$' }
+rule-providers:
+  #Youtube
+  Blackmatrix7_YouTube:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_YouTube.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml"
+
+  Blackmatrix7_YouTubeMusic:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_YouTubeMusic.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTubeMusic/YouTubeMusic.yaml"
+  # Spotify
+  Blackmatrix7_Spotify:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Spotify.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Spotify/Spotify.yaml"
+  # Netflix
+  Blackmatrix7_Netflix:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Netflix.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Netflix/Netflix_Classical.yaml"
+
+  #TikTok
+  Blackmatrix7_Tiktok:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Tiktok.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/TikTok/TikTok.yaml"
+
+  #Telegram
+  Blackmatrix7_Telegram:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Telegram.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml"
+
+  #OpenAI
+  Blackmatrix7_OpenAi:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_OpenAi.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml"
+
+  #Claude
+  Blackmatrix7_Claude:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Claude.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml"
+
+  #Apple
+  Blackmatrix7_Apple:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Apple.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Apple/Apple_Classical.yaml"
+
+  #Google
+  Blackmatrix7_Google:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Google.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml"
+
+  #Microsoft
+  Blackmatrix7_Microsoft:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Microsoft.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Microsoft/Microsoft.yaml"
+
+  #PikPak
+  Blackmatrix7_PikPak:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_PikPak.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/PikPak/PikPak.yaml"
+  #MEGA
+  Blackmatrix7_MEGA:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_MEGA.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/MEGA/MEGA.yaml"
+
+  #EHGallery
+  Blackmatrix7_EHGallery:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_EHGallery.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/EHGallery/EHGallery.yaml"
+
+  #Steam
+  Blackmatrix7_Steam:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Steam.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Steam/Steam.yaml"
+  #Crypto
+  Blackmatrix7_Crypto:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Crypto.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Crypto/Crypto.yaml"
+  #Twitter
+  Blackmatrix7_Twitter:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Twitter.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Twitter/Twitter.yaml"
+
+  #拒绝
+  Blackmatrix7_BlockHttpDNS:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_BlockHttpDNS.yaml
+    url: https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BlockHttpDNS/BlockHttpDNS.yaml
+
+  #代理
+  Blackmatrix7_Global:
+    #包含 Loyalsoldier 的 gfw / greatfire / proxy
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Global.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Global/Global_Classical.yaml"
+
+  #直连
+  Blackmatrix7_Bilibili:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Bilibili.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BiliBili/BiliBili.yaml"
+
+  Blackmatrix7_WeChat:
+    <<: *rpc
+    path: ./rules/Blackmatrix7_WeChat.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/WeChat/WeChat.yaml"
+
+  Blackmatrix7_Direct:
+    #直连指不应该被去广告分流规则屏蔽的域名、IP等，请将此分流规则置于去广告规则之前。
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Direct.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Direct/Direct.yaml"
+
+  Blackmatrix7_Lan:
+    # 包含 Loyalsoldier 的 private / lancidr
+    <<: *rpc
+    path: ./rules/Blackmatrix7_Lan.yaml
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Lan/Lan.yaml"
+  #包含 Loyalsoldier 的 direct / cncidr
+  # Blackmatrix7_ChinaMax:
+  #   <<: *rpc
+  #   path: ./rules/Blackmatrix7_ChinaMax.yaml
+  #   url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMax/ChinaMax_Classical_No_IPv6_No_Resolve.yaml"
+  Me_Emby:
+    <<: *rpc
+    path: ./rules/Me_Emby.yaml
+    url: "https://cdn.jsdelivr.net/gh/Gurosuogen/Ruleset@master/Providers/Emby.yaml"
+  Me_Nikke:
+    <<: *rpc
+    path: ./rules/Me_Nikke.yaml
+    url: "https://cdn.jsdelivr.net/gh/Gurosuogen/Ruleset@master/Providers/Nikke.yaml"
+rules:
+  - RULE-SET,Blackmatrix7_BlockHttpDNS,REJECT
+  - RULE-SET,Blackmatrix7_Bilibili,📺 Bilibili
+  - RULE-SET,Blackmatrix7_WeChat,DIRECT
+  - RULE-SET,Blackmatrix7_Direct,DIRECT
+  - RULE-SET,Blackmatrix7_Lan,DIRECT
+  #EMBY
+  - RULE-SET,Me_Emby,🎞️ Emby
+  - DOMAIN-SUFFIX,stream.synn.cc,🎫 SYN Stream
+  #Nikke
+  - RULE-SET,Me_Nikke,🇯🇵 Japan
+  #漫画柜
+  - DOMAIN-SUFFIX,manhuagui.com,🇨🇳 Taiwan
+  - DOMAIN-SUFFIX,mhgui.com,🇨🇳 Taiwan
+  - DOMAIN-SUFFIX,hamreus.com,🇨🇳 Taiwan
+  #国外服务
+  - RULE-SET,Blackmatrix7_EHGallery,♥️ EHGallery
+  - RULE-SET,Blackmatrix7_PikPak,🪣 国外网盘
+  - RULE-SET,Blackmatrix7_MEGA,🪣 国外网盘
+  - RULE-SET,Blackmatrix7_Telegram,📲 Telegram
+  - RULE-SET,Blackmatrix7_OpenAi,🤖 AI
+  - RULE-SET,Blackmatrix7_Claude,🤖 AI
+  - DOMAIN,bard.google.com,🤖 AI
+  - RULE-SET,Blackmatrix7_Tiktok,🎶 Tiktok
+  - RULE-SET,Blackmatrix7_Apple,🍎 Apple
+  - RULE-SET,Blackmatrix7_Microsoft,🧩 Microsoft
+  - RULE-SET,Blackmatrix7_Google,🌌 Google
+  - RULE-SET,Blackmatrix7_YouTube,🌌 Google
+  - RULE-SET,Blackmatrix7_YouTubeMusic,🌌 Google
+  - RULE-SET,Blackmatrix7_Spotify,🎵 Spotify
+  - RULE-SET,Blackmatrix7_Netflix,🎥 Netflix
+  - RULE-SET,Blackmatrix7_Steam,🕹️ Steam
+  - RULE-SET,Blackmatrix7_Crypto,🪙 Crypto
+  - RULE-SET,Blackmatrix7_Twitter,✖️ Twitter
+  #代理
+  - RULE-SET,Blackmatrix7_Global,☁️ PROXY
+  # 直连
+  # - RULE-SET,Blackmatrix7_ChinaMax,DIRECT
+  - GEOIP,LAN,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,🧿 FINAL
