@@ -1,0 +1,7 @@
+payload:
+  #perplexity
+  - DOMAIN-SUFFIX,perplexity.ai
+  - DOMAIN-SUFFIX,pplx.ai
+  #ciciai
+  - DOMAIN-SUFFIX,ciciai.com,AI
+  - DOMAIN-SUFFIX,byteoversea.com,AI
