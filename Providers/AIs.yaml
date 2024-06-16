@@ -3,5 +3,7 @@ payload:
   - DOMAIN-SUFFIX,perplexity.ai
   - DOMAIN-SUFFIX,pplx.ai
   #ciciai
-  - DOMAIN-SUFFIX,ciciai.com,AI
-  - DOMAIN-SUFFIX,byteoversea.com,AI
+  - DOMAIN-SUFFIX,ciciai.com
+  - DOMAIN-SUFFIX,byteoversea.com
+  #coze
+  - DOMAIN-SUFFIX,coze.com
