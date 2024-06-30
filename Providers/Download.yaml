@@ -1,0 +1,20 @@
+payload:
+  #国外网盘
+  - DOMAIN-SUFFIX,anonfiles.com
+  - DOMAIN-SUFFIX,pixeldrain.com
+  - DOMAIN-SUFFIX,gofile.io
+  - DOMAIN-SUFFIX,uploadhaven.com
+  - DOMAIN-SUFFIX,mixdrop.co
+  - DOMAIN-SUFFIX,workupload.com
+  # 7788
+  - DOMAIN-SUFFIX,128100.xyz,Emby & Download
+  - DOMAIN-SUFFIX,cableav.tv,Emby & Download
+  - DOMAIN-SUFFIX,rou.video,Emby & Download
+  - DOMAIN-SUFFIX,rn122.xyz,Emby & Download
+  # 客户端
+  - PROCESS-NAME,JDownloader2.exe,Emby & Download
+  - PROCESS-NAME,m3u8dl.exe,Emby & Download
+  - PROCESS-NAME,IDMAN.exe,Emby & Download
+  - PROCESS-NAME,electron.exe,Emby & Download #Emby小秘
+  - PROCESS-NAME,mpv.exe,Emby & Download
+  - PROCESS-NAME,tsukimi.exe,Emby & Download
