@@ -7,14 +7,7 @@ payload:
   - DOMAIN-SUFFIX,mixdrop.co
   - DOMAIN-SUFFIX,workupload.com
   # 7788
-  - DOMAIN-SUFFIX,128100.xyz,Emby & Download
-  - DOMAIN-SUFFIX,cableav.tv,Emby & Download
-  - DOMAIN-SUFFIX,rou.video,Emby & Download
-  - DOMAIN-SUFFIX,rn122.xyz,Emby & Download
-  # 客户端
-  - PROCESS-NAME,JDownloader2.exe,Emby & Download
-  - PROCESS-NAME,m3u8dl.exe,Emby & Download
-  - PROCESS-NAME,IDMAN.exe,Emby & Download
-  - PROCESS-NAME,electron.exe,Emby & Download #Emby小秘
-  - PROCESS-NAME,mpv.exe,Emby & Download
-  - PROCESS-NAME,tsukimi.exe,Emby & Download
+  - DOMAIN-SUFFIX,128100.xyz
+  - DOMAIN-SUFFIX,cableav.tv
+  - DOMAIN-SUFFIX,rou.video
+  - DOMAIN-SUFFIX,rn122.xyz
