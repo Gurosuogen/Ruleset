@@ -1,26 +1,22 @@
 payload:
-  #MisakaF
+  # MisakaF
   - DOMAIN-SUFFIX,misakaf.org
-  #TreeDiagram 树状图
+  # TreeDiagram 树状图
   - DOMAIN-SUFFIX,789.123456.al
-  #pilipili公益服
+  # pilipili公益服
   - DOMAIN-SUFFIX,pilipiliultra.top
   - DOMAIN-SUFFIX,pilipiliultra.com
-  - DOMAIN-SUFFIX,pilipili.mikuu.link
-  #NME
+  # NME
   - DOMAIN-SUFFIX,ohhhh.org
-  #Atomlantis x Misakaf x jms
-  - DOMAIN-SUFFIX,emby-mix.atomlantis.cloud
-  - DOMAIN-SUFFIX,emby-misakaf.atomlantis.cloud
-  #垃圾影音
+  # 垃圾影音
   - DOMAIN-SUFFIX,xmsl.org
-  #纸片人
-  - DOMAIN-SUFFIX,9521732.xyz
+  # 纸片人
   - DOMAIN-SUFFIX,embyplus.org
-  #CTC x 卡戎
-  - DOMAIN-SUFFIX,charontv.com
   #ACA
   - DOMAIN-SUFFIX,emby.aca.best
-  - DOMAIN-SUFFIX,porn.aca.best
-  #nTRRR x SYN
+  # nTRRR
   - DOMAIN-SUFFIX,stream.ntrrr.top
+  - DOMAIN-SUFFIX,stream-direct.synn.cc
+  # Heisi
+  - DOMAIN-SUFFIX,h1.i109.com
+  - DOMAIN-SUFFIX,h2.i109.com
