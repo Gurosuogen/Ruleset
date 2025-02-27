@@ -3,13 +3,10 @@ payload:
   - DOMAIN-SUFFIX,misty.cx
   # pilipili
   - DOMAIN-SUFFIX,pilipili.club
+  - DOMAIN-SUFFIX,pilipiliultra.com
   # 垃圾影音
   - DOMAIN-SUFFIX,xmsl.org
   # 纸片人
   - DOMAIN-SUFFIX,embyplus.org
-  # ACA
-  - DOMAIN-SUFFIX,misakaf.org
   # Terminus
   - DOMAIN-SUFFIX,emby.wtf
-  # AWA
-  - DOMAIN-SUFFIX,awatv.de
